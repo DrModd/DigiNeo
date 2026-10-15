@@ -23,8 +23,8 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 1. Скачать папку: **Code → Download ZIP**.
 2. В папке `image` дважды кликнуть **join_windows.bat** → соберётся `DigiNeo.zip`.
 3. balenaEtcher → `DigiNeo.zip` → карта → Flash.
-Контроль: склеенный `DigiNeo.zip` должен весить **1361701350** байт.
-SHA-256: `1c0b48320512a8757d78d170acec35ff5feb4d6acb46af03f7d8c258405924c9`
+Контроль: склеенный `DigiNeo.zip` должен весить **1361694218** байт.
+SHA-256: `bde423b9f1ca2229a2ba1dc142eae05d171b97b7ee9e9f7039333da318ae6e18`
 (Linux/Mac: `sh join_linux_mac.sh`)
 
 ## Первый запуск
