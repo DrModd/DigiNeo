@@ -13,7 +13,7 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 - меню **Fox Remote** (http://digineo.local), классическое — на classic.php;
 - Android-пульт **[FoxRemoteN](https://github.com/DrModd/FoxRemoteN)** находит плату автоматически (mDNS: MPD анонсируется как «DigiNeo (DigiFox) MPD»);
 - Qobuz: **нативный Qobuz Connect впечён** (устройство «DigiNeo» в приложении Qobuz; UPnP через upmpdcli как запасной путь), PCM битперфект до 192 кГц, DSD→PCM;
-- Wi-Fi: в меню Настройки → Wi-Fi (поиск сетей и подключение, нужен USB-свисток);
+- Wi-Fi: в меню «Усилитель, будильник, таймер» → Wi-Fi (поиск сетей и подключение, нужен USB-свисток);
 - Roon, AirPlay, Spotify, Tidal, HQPlayer NAA (`networkaudiod`); плеер squeezelite;
 - связь с усилителем по UART1 (протокол pf_link), режим USB→I2S;
 - вход SSH: **root / digineo** (сменить: `passwd`).
@@ -24,8 +24,8 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 1. Скачать папку: **Code → Download ZIP**.
 2. В папке `image` дважды кликнуть **join_windows.bat** → соберётся `DigiNeo.zip`.
 3. balenaEtcher → `DigiNeo.zip` → карта → Flash.
-Контроль: склеенный `DigiNeo.zip` должен весить **1361684630** байт.
-SHA-256: `7bb1a07be101072c581a96d5ab4caa772709ab4d32e27b9b4c064020ad43972e`
+Контроль: склеенный `DigiNeo.zip` должен весить **1361694478** байт.
+SHA-256: `11baf6380cbcf9fcb0eb962283cc7adbbf12250543c72744b29c274c86ca3188`
 (Linux/Mac: `sh join_linux_mac.sh`)
 
 ## Первый запуск
