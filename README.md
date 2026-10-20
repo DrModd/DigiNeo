@@ -20,6 +20,18 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 Убрано для лёгкости: LMS/Squeezebox-сервер, MinimServer, Scream, второе ядро 6.1.11.
 Размер образа ~2,79 ГиБ.
 
+## Яндекс Музыка (extras/yandex-music)
+Та же Яндекс Музыка, что в DigiFox: служба `ymusicd` (127.0.0.1:6601) + страница
+`yandex.php` в меню Fox Remote. В образ пока не впечена — ставится скриптом на плате
+(собирает `ymusicd` на месте, нужен интернет):
+```
+scp -r extras/yandex-music root@digineo.local:/root/      # с компьютера, пароль digineo
+ssh root@digineo.local
+bash /root/yandex-music/install.sh                         # повторный запуск = обновление
+```
+Дальше: http://digineo.local/yandex.php → «Открыть вход Яндекса» → вставить адрес с `access_token=…`.
+Служба: `systemctl status ymusicd`, журнал `journalctl -u ymusicd`. Удалить: `bash install.sh --remove`.
+
 ## Сборка файла и запись (Windows)
 1. Скачать папку: **Code → Download ZIP**.
 2. В папке `image` дважды кликнуть **join_windows.bat** → соберётся `DigiNeo.zip`.

@@ -1,0 +1,12 @@
+[Unit]
+Description=Yandex Music for MPD (ymusicd, 127.0.0.1:6601)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/ymusicd
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=multi-user.target
