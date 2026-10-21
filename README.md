@@ -14,6 +14,8 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 - Android-пульт **[FoxRemoteN](https://github.com/DrModd/FoxRemoteN)** находит плату автоматически (mDNS: MPD анонсируется как «DigiNeo (DigiFox) MPD»);
 - Qobuz: **нативный Qobuz Connect впечён** (устройство «DigiNeo» в приложении Qobuz; UPnP через upmpdcli как запасной путь), PCM битперфект до 192 кГц, DSD→PCM;
 - Wi-Fi: в меню «Усилитель, будильник, таймер» → Wi-Fi (поиск сетей и подключение, нужен USB-свисток);
+- **Яндекс Музыка** впечена (служба `ymusicd` собирается на плате при первой загрузке с интернетом; вход — страница «Яндекс Музыка» в меню);
+- **онлайн-обновление** без перепрошивки: меню «Усилитель…» → Обновление (каталог [DigiNeo-updates](https://github.com/DrModd/DigiNeo-updates), версия образа 1.0.1);
 - Roon, AirPlay, Spotify, Tidal, HQPlayer NAA (`networkaudiod`); плеер squeezelite;
 - связь с усилителем по UART1 (протокол pf_link), режим USB→I2S;
 - вход SSH: **root / digineo** (сменить: `passwd`).
@@ -22,8 +24,9 @@ raspotify, tidalconnect и др.) — под своими лицензиями �
 
 ## Яндекс Музыка (extras/yandex-music)
 Та же Яндекс Музыка, что в DigiFox: служба `ymusicd` (127.0.0.1:6601) + страница
-`yandex.php` в меню Fox Remote. В образ пока не впечена — ставится скриптом на плате
-(собирает `ymusicd` на месте, нужен интернет):
+`yandex.php` в меню Fox Remote. В образе уже есть: при первой загрузке с интернетом сама
+соберётся `ymusicd` (журнал `/var/log/digineo-ymusic-build.log`). Ниже — ручная установка/обновление
+скриптом на плате (нужен интернет):
 ```
 scp -r extras/yandex-music root@digineo.local:/root/      # с компьютера, пароль digineo
 ssh root@digineo.local
@@ -36,8 +39,8 @@ bash /root/yandex-music/install.sh                         # повторный 
 1. Скачать папку: **Code → Download ZIP**.
 2. В папке `image` дважды кликнуть **join_windows.bat** → соберётся `DigiNeo.zip`.
 3. balenaEtcher → `DigiNeo.zip` → карта → Flash.
-Контроль: склеенный `DigiNeo.zip` должен весить **1361694478** байт.
-SHA-256: `11baf6380cbcf9fcb0eb962283cc7adbbf12250543c72744b29c274c86ca3188`
+Контроль: склеенный `DigiNeo.zip` должен весить **1361625904** байт.
+SHA-256: `7d4e6d1d87e60658925e20e3a2051af19a1ed4f7eca13617bdf0f3dbcae16b8c`
 (Linux/Mac: `sh join_linux_mac.sh`)
 
 ## Первый запуск
