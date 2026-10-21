@@ -1,0 +1,18 @@
+#!/bin/sh
+# pfctl-ym — Яндекс Музыка для меню усилителя (вызывается из pfctl: «ym dirs|st|play …»)
+#   pfctl-ym dirs [с]          -> @RLIST d …   (разделы)
+#   pfctl-ym st <раздел> [с]   -> @RLIST s …   (пункты раздела)
+#   pfctl-ym play <раздел> <№> -> @BUSY ym, затем @OK ym … | @ERR ym …
+URL=http://127.0.0.1
+WGET="wget -q -T 60 -O -"
+n3=$(echo "$2" | tr -cd 0-9); n4=$(echo "$3" | tr -cd 0-9)
+rlist() { while IFS= read -r l || [ -n "$l" ]; do case "$l" in [ds]\ *) echo "@RLIST $l" ;; esac; done; }
+case "$1" in
+    dirs) $WGET "$URL/yandex.php?amp=dirs&lines=2&from=${n3:-0}" 2>/dev/null | rlist ;;
+    st)   $WGET "$URL/yandex.php?amp=st&lines=2&dir=${n3:-0}&from=${n4:-0}" 2>/dev/null | rlist ;;
+    play)
+        echo "@BUSY ym"
+        r=$($WGET "$URL/yandex.php?amp=play&dir=${n3:-0}&idx=${n4:-0}" 2>/dev/null | tr -d '\r\n')
+        case "$r" in "OK "*) echo "@OK ym ${r#OK }" ;; *) echo "@ERR ym ${r#ERR }" ;; esac ;;
+    *) echo "@ERR ym bad_arg" ;;
+esac

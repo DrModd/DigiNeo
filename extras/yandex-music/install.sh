@@ -12,7 +12,7 @@ WWW=/var/www
 
 if [ "$1" = "--remove" ]; then
     systemctl disable --now ymusicd 2>/dev/null || true
-    rm -f /etc/systemd/system/ymusicd.service /usr/local/bin/ymusicd $WWW/yandex.php
+    rm -f /etc/systemd/system/ymusicd.service /usr/local/bin/ymusicd /usr/local/bin/pfctl-ym $WWW/yandex.php $WWW/ym_amp_lib.php
     systemctl daemon-reload
     sed -i '/href="yandex.php"/d' $WWW/index.php
     echo "Удалено. Токен остался в /etc/digifox/ymusic_token (удалить вручную, если не нужен)."
@@ -45,6 +45,9 @@ systemctl restart ymusicd
 
 echo "== веб-интерфейс"
 install -m 0644 yandex.php $WWW/yandex.php
+install -m 0644 ym_amp_lib.php $WWW/ym_amp_lib.php
+install -m 0755 pfctl-ym /usr/local/bin/pfctl-ym
+bash ./pfctl-ym-patch.sh || echo "pfctl: команду ym встроить не удалось"
 python3 - "$WWW" <<'PY'
 import re, sys
 www = sys.argv[1]
